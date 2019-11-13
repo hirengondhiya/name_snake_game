@@ -29,6 +29,9 @@ Ensure that your features include the following language elements and concepts:
 
 Note: If the features you described do not require you to use all of the above it is likely that your application is not sophisticated enough. Consult with your educator to check your features are sufficient to address the criteria for T1A2-7. 
 -->
+## Should explain how to use the game
+At the start of the game the application should check if user needs to know how to use the game.
+If user choses to see the help file it should show the help on screen.
 ## Should accept user name as input.
 It should be possible to give user name as optional command line argument or else ask for user name if command line argument is missing. 
 ## Should use arrow keys to move snake in up,down,left and right direction.
