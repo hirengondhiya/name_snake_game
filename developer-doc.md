@@ -60,4 +60,4 @@ Develop an implementation plan which:
  -->
 
 # Status Updates
-All the status updates can be found [here](developer-doc.md)
+All the status updates can be found [here](development-log.md)
