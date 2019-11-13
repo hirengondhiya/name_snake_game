@@ -6,8 +6,7 @@ The goal of the user is to make snake eat as many apples as much possible withou
 Today's generation has forgotten about good old days of limited functionality not so smart cellular phones. We want to remind the users good old days of snake fun by giving a bit of twist to the snake game.
 ## Target Audience
 Target audience is mainly the kids who have not got chance to use old Nokia series phones and to teach them how some of their parents enjoyed limited functionality games in limited colors and simple graphics. Also the users who have had first hannd experience with the game to continue the fun on terminal.
-## How to use the application
-
+<!-- Ques is this read me file -->
 <!-- 
 Develop a statement of purpose and scope for your application. It must include:
 - describe at a high level what the application will do
@@ -31,16 +30,27 @@ Ensure that your features include the following language elements and concepts:
 Note: If the features you described do not require you to use all of the above it is likely that your application is not sophisticated enough. Consult with your educator to check your features are sufficient to address the criteria for T1A2-7. 
 -->
 ## Should accept user name as input.
+It should be possible to give user name as optional command line argument or else ask for user name if command line argument is missing. 
 ## Should use arrow keys to move snake in up,down,left and right direction.
+It should be possible to change the direction of the snake by pressing up, down, left, right keys.
 ## Should game over if snake cuts it self.
+It should detect if the snake's head overlaps on it self and should end the game for the user.
 ## Should game over if snake hits any of the boundry walls.
+It should detect if snake's head goes over any of the boundry walls of the board and should end the game in that case.
 ## Should produce apple which can be eaten by snake to grow.
+The game should produce an apple an place it inside the box. Should detect when snake overlaps on the apple and should regularly produce an apple at a random location within the box everytime previous apple is eaten.
+## Snake should move continuously
+The game should move the snake continously  in the direction chosen by the user.
 ## Should should accept difficulty level and automatically move snake in the direction last chosen by the user.
+The game should provide option to skill level of the user. Based on skills it should adjust speed of movement of the snake.
 ## Should track user score and display at end of the game.
+The game should reward the user with certain number of points everytime an apple is eaten by the snake and it should keep track of apples eaten by the user as well as update the score. 
 ## Should allow user to play again without ending the application.
+When the game ends due to snake hitting wall or cutting it self. The application should provide option to restart a new game without user needing to start the application again.
 ## Should allow user to quit during the game play.
+During the game play it should allow user to quit the game if user presses the key "Q" or "q"
 ## Should produce with letters from user name and let user win when they build snake with their name.
-
+The game should produce letters from name of the user as an apple which can be eaten by the snake. On each eating of the apple the letter should be added to the tail of the snake. The user wins when whole name is produced without cutting it self or without hitting the wall.
 # User Interaction and Experience
 <!-- 
 Develop an outline of the user interaction and experience for the application.
