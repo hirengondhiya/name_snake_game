@@ -1,8 +1,13 @@
 # Purpose and Scope
 ## Application functionality
+Snake application is inspired from Snake game that came with old Nokia phones. In this game the user is provided with a snake in a sqaure or rectangular box. Once the game starts snake keeps moving in the direction controlled by the user by pressing up, down, left or right keys. The game also regular produces an apple within the boundries of the box which can be eaten by snake if it passes over the apple. This enables snake to grow and gives certain number of points to the user. If the snake cuts it self or hits any of the boundry of the walls.
+The goal of the user is to make snake eat as many apples as much possible without cutting it self and without hitting any of the walls.
 ## Problem Statement
+Today's generation has forgotten about good old days of limited functionality not so smart cellular phones. We want to remind the users good old days of snake fun by giving a bit of twist to the snake game.
 ## Target Audience
+Target audience is mainly the kids who have not got chance to use old Nokia series phones and to teach them how some of their parents enjoyed limited functionality games in limited colors and simple graphics. Also the users who have had first hannd experience with the game to continue the fun on terminal.
 ## How to use the application
+
 <!-- 
 Develop a statement of purpose and scope for your application. It must include:
 - describe at a high level what the application will do
@@ -28,6 +33,7 @@ Note: If the features you described do not require you to use all of the above i
 ## Should accept user name as input.
 ## Should use arrow keys to move snake in up,down,left and right direction.
 ## Should game over if snake cuts it self.
+## Should game over if snake hits any of the boundry walls.
 ## Should produce apple which can be eaten by snake to grow.
 ## Should should accept difficulty level and automatically move snake in the direction last chosen by the user.
 ## Should track user score and display at end of the game.
