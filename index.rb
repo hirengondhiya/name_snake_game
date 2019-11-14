@@ -50,3 +50,17 @@ def read_user_name
     end
     return user_name
 end
+
+def print_help
+    need_help = $input_hash[:help]
+    if (need_help == nil)
+        puts "Do you know how to play the game? "
+        puts "Press enter if you know any other key to know how to play snake."
+        play = gets.chomp
+        need_help = play == ""? nil : play
+    end
+
+    if need_help != nil then 
+        puts "need help."
+    end
+end
