@@ -41,3 +41,12 @@ def read_comm_args
     end
     return input_error
 end
+
+def read_user_name
+    user_name = $input_hash[:username]
+    if (user_name == nil)
+        puts "Please enter your name: "
+        user_name = gets.chomp
+    end
+    return user_name
+end
