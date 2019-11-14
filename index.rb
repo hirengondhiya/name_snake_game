@@ -65,9 +65,51 @@ def print_help
     end
 end
 
-is_error = read_comm_args
-
-if (!is_error)
-    user_name = read_user_name
-    print_help
+def empty_board width, height
+    board = []
+    for y in 0..(height+2)
+        row = []
+        for x in 0..(width+2)
+            # puts "x: #{x} y: #{y} width: #{width+2} height: #{height+2}"
+            # print "Pushing "
+            if (y==0 || y == height+2 )
+                # puts "y==0: #{y==0} || y == height+2: #{y == height+2} || x == 0: #{x == 0} || x == width+2: #{x == width+2}"
+                # puts "|"
+                row.push("-")
+            elsif (x == 0 || x == width+2)
+                row.push("|")
+            else
+                # puts "space"
+                row.push(" ")
+            end
+            # gets.chomp
+        end
+        board.push(row)
+    end
+    return board
 end
+
+def print_board board
+    for y in 0...board.length
+        row = board[y]
+        for x in 0..row.length
+            print board[y][x]
+        end
+        puts ""
+    end
+end
+
+def game_play
+    is_error = read_comm_args
+    board = empty_board 20, 10
+
+    if (!is_error)
+        user_name = read_user_name
+        print_help
+        
+        system("clear")
+        print_board board 
+    end
+end
+
+game_play
