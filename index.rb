@@ -32,8 +32,7 @@ class Snake
         return dup_board
     end
 
-    def move=dir
-
+    def change_dir_to=dir
         case dir.upcase
         when "UP"
             @diR = {
@@ -195,7 +194,7 @@ def game_play
         when ""
         else
         end
-        snake.move=1
+        snake.change_dir_to="right"
         print_board snake.get board
     end    
     # print_board board 
