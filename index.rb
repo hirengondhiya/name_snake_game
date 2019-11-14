@@ -107,15 +107,21 @@ def print_board board
     end
 end
 
-def create_apple board
-    x = $apple[:x]
-    y = $apple[:y]
-    while(x == $apple[:x])
-        x = rand(WIDTH) + 1
+def create_apple board, first=false
+    if (first == true)
+        x = WIDTH/2 + 1
+        y = HEIGHT/2 + 1
+    else
+        x = $apple[:x]
+        y = $apple[:y]
+        while(x == $apple[:x])
+            x = rand(WIDTH) + 1
+        end
+        while(y == $apple[:y])
+            y = rand(HEIGHT) + 1
+        end    
     end
-    while(y == $apple[:y])
-        y = rand(HEIGHT) + 1
-    end    
+
     $apple[:x] = x
     $apple[:y] = y
     board[y][x] = APPLE_CHAR
@@ -124,7 +130,7 @@ end
 def game_play
     is_error = read_comm_args
     board = empty_board WIDTH, HEIGHT
-    create_apple board
+    create_apple board, true
     print_board board 
 
     # if (!is_error)
