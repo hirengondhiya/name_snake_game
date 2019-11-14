@@ -62,6 +62,9 @@ Your outline must include:
 - how the user will interact with / use each feature
 - how errors will be handled by the application and displayed to the user
  -->
+ ## Game play
+
+ ## Error handling
 
 # Control Flow Diagram	
 <!-- 
@@ -69,7 +72,9 @@ Develop a diagram which describes the control flow of your application. Your dia
 - show the workflow/logic and/or integration of the features in your application for each feature.
 - utilise a recognised format or set of conventions for a control flow diagram, such as UML.
  -->
+Click [here](https://www.draw.io/#Hhirengondhiya%2Fname_snake_game%2Fmaster%2Fdocumentation%2Fctrl-flow-diagram%2Fsnake_game.drawio) to view the control flow diagram on [draw.io](https://www.draw.io/)
 
+Please note you need to authorise [draw.io](https://www.draw.io/) to use your github account.
 # Implementation Plan
 <!-- 
 Develop an implementation plan which:
