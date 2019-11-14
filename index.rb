@@ -1,7 +1,10 @@
 require 'colorize'
 
 $input_hash = {}
-user_name = ""
+HEIGHT = 10
+WIDTH = HEIGHT * 2
+$apple = {}
+APPLE_CHAR = "a"
 
 def puts_error msg
     puts "Erro: #{msg}".on_red
@@ -105,22 +108,32 @@ def print_board board
 end
 
 def create_apple board
-    x = 0
+    x = $apple[:x]
+    y = $apple[:y]
+    while(x == $apple[:x])
+        x = rand(WIDTH) + 1
+    end
+    while(y == $apple[:y])
+        y = rand(HEIGHT) + 1
+    end    
+    $apple[:x] = x
+    $apple[:y] = y
+    board[y][x] = APPLE_CHAR
 end
-HEIGHT = 10
-WIDTH = HEIGHT * 2
+
 def game_play
     is_error = read_comm_args
     board = empty_board WIDTH, HEIGHT
+    create_apple board
+    print_board board 
 
-    if (!is_error)
-        user_name = read_user_name
-        print_help
+    # if (!is_error)
+    #     user_name = read_user_name
+    #     print_help
         
-        system("clear")
-        print_board board 
-        # puts "height=#{board.length} width=#{board[0].length}"
-    end
+    #     system("clear")
+    #     # puts "height=#{board.length} width=#{board[0].length}"
+    # end
 end
 
 game_play
