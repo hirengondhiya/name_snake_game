@@ -64,3 +64,10 @@ def print_help
         puts "need help."
     end
 end
+
+is_error = read_comm_args
+
+if (!is_error)
+    user_name = read_user_name
+    print_help
+end
