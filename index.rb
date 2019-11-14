@@ -1,10 +1,52 @@
 require 'colorize'
 
+require 'io/console'
+
 $input_hash = {}
 HEIGHT = 10
 WIDTH = HEIGHT * 2
 $apple = {}
-APPLE_CHAR = "a"
+APPLE_CHAR = "a".green.blink
+SNAKE_HEAD_CHAR = "@"
+
+
+class Snake
+    attr_reader :head, :tail
+    def initialize
+        @head = {
+            x: WIDTH / 4 + 1,
+            y: HEIGHT / 2 + 1
+        }
+        @tail = @head.dup
+
+        @dir = {
+            x: 1,
+            y: 0
+        }
+    end
+
+    def get board
+        dup_board = board.dup
+        
+        dup_board[@head[:y]][@head[:x]] = SNAKE_HEAD_CHAR
+        return dup_board
+    end
+
+    def move=dir
+
+        case dir.upcase
+        when "UP"
+            @diR = {
+                x: 0,
+                y: -1
+            }
+        when "DOWN"
+        when "LEFT"
+        when "RIGHT"
+        else
+        end
+    end
+end
 
 def puts_error msg
     puts "Erro: #{msg}".on_red
@@ -97,13 +139,22 @@ def empty_board width, height
     return board
 end
 
-def print_board board
+def print_board board, new=false
+    if(!new)
+        go_up board
+    end
     for y in 0...board.length
         row = board[y]
         for x in 0..row.length
             print board[y][x]
         end
         puts ""
+    end
+end
+
+def go_up board
+    for y in 0...board.length+1
+        print "\r" + ("\e[A\e[K")
     end
 end
 
@@ -131,7 +182,23 @@ def game_play
     is_error = read_comm_args
     board = empty_board WIDTH, HEIGHT
     create_apple board, true
-    print_board board 
+    snake = Snake.new
+    command = ""
+    new_board = snake.get board
+    print_board new_board, true
+    while command.upcase != "Q"
+        command = $stdin.getch
+        case command
+        when ""
+        when ""
+        when ""
+        when ""
+        else
+        end
+        snake.move=1
+        print_board snake.get board
+    end    
+    # print_board board 
 
     # if (!is_error)
     #     user_name = read_user_name
