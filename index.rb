@@ -67,20 +67,25 @@ end
 
 def empty_board width, height
     board = []
-    for y in 0..(height+2)
+    # xchar = "|"
+    # ychar = "-"
+    xchar = "*"
+    ychar = "*"
+    nchar = " "
+    for y in 0..(height+1)
         row = []
-        for x in 0..(width+2)
-            # puts "x: #{x} y: #{y} width: #{width+2} height: #{height+2}"
+        for x in 0..(width+1)
+            # puts "x: #{x} y: #{y} width: #{width+1} height: #{height+1}"
             # print "Pushing "
-            if (y==0 || y == height+2 )
-                # puts "y==0: #{y==0} || y == height+2: #{y == height+2} || x == 0: #{x == 0} || x == width+2: #{x == width+2}"
+            if (y==0 || y == height+1 )
+                # puts "y==0: #{y==0} || y == height+1: #{y == height+1} || x == 0: #{x == 0} || x == width+1: #{x == width+1}"
                 # puts "|"
-                row.push("-")
-            elsif (x == 0 || x == width+2)
-                row.push("|")
+                row.push(ychar)
+            elsif (x == 0 || x == width+1)
+                row.push(xchar)
             else
                 # puts "space"
-                row.push(" ")
+                row.push(nchar)
             end
             # gets.chomp
         end
@@ -99,9 +104,14 @@ def print_board board
     end
 end
 
+def create_apple board
+    x = 0
+end
+HEIGHT = 10
+WIDTH = HEIGHT * 2
 def game_play
     is_error = read_comm_args
-    board = empty_board 20, 10
+    board = empty_board WIDTH, HEIGHT
 
     if (!is_error)
         user_name = read_user_name
@@ -109,6 +119,7 @@ def game_play
         
         system("clear")
         print_board board 
+        # puts "height=#{board.length} width=#{board[0].length}"
     end
 end
 
