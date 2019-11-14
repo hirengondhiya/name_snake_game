@@ -9,10 +9,12 @@ end
 
 def read_comm_args
     user_input = ARGV.dup
+    # print ARGV
     # print user_input
     input_error = false
     for input in user_input
         key_value = input.split("=")
+        # puts key_value
 
         case key_value.length
         when 0
