@@ -67,6 +67,7 @@ Your outline must include:
  ## Error handling
 
 # Control Flow Diagram	
+![Snake game control flow](./ctrl-flow-diagram/snake_game.svg)
 <!-- 
 Develop a diagram which describes the control flow of your application. Your diagram must:
 - show the workflow/logic and/or integration of the features in your application for each feature.
