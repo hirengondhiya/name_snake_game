@@ -8,7 +8,24 @@ WIDTH = HEIGHT * 2
 $apple = {}
 APPLE_CHAR = "a".green.blink
 SNAKE_HEAD_CHAR = "@"
-
+DIR = {
+    up: {
+        x: 0,
+        y: -1
+    },
+    down: {
+        x: 0,
+        y: 1
+    },
+    left: {
+        x: -1,
+        y: 0
+    },
+    right: {
+        x: 1,
+        y: 0
+    },
+}
 
 class Snake
     attr_reader :head, :tail
@@ -17,12 +34,9 @@ class Snake
             x: WIDTH / 4 + 1,
             y: HEIGHT / 2 + 1
         }
-        @tail = @head.dup
+        @tail = []
 
-        @dir = {
-            x: 1,
-            y: 0
-        }
+        @dir = DIR[:right]
     end
 
     def get board
@@ -33,17 +47,7 @@ class Snake
     end
 
     def change_dir_to=dir
-        case dir.upcase
-        when "UP"
-            @diR = {
-                x: 0,
-                y: -1
-            }
-        when "DOWN"
-        when "LEFT"
-        when "RIGHT"
-        else
-        end
+        @dir=dir
     end
 end
 
@@ -140,7 +144,7 @@ end
 
 def print_board board, new=false
     if(!new)
-        go_up board
+        go_up board.length+1
     end
     for y in 0...board.length
         row = board[y]
@@ -151,8 +155,8 @@ def print_board board, new=false
     end
 end
 
-def go_up board
-    for y in 0...board.length+1
+def go_up lines
+    for y in 0...lines
         print "\r" + ("\e[A\e[K")
     end
 end
@@ -177,7 +181,25 @@ def create_apple board, first=false
     board[y][x] = APPLE_CHAR
 end
 
-def game_play
+def read_char
+    STDIN.echo = false
+    STDIN.raw!
+  
+    input = STDIN.getc.chr
+    if input == "\e" then
+      input << STDIN.read_nonblock(3) rescue nil
+      input << STDIN.read_nonblock(2) rescue nil
+    end
+  ensure
+    STDIN.echo = true
+    STDIN.cooked!
+  
+    return input
+  end
+
+
+
+  def game_play
     is_error = read_comm_args
     board = empty_board WIDTH, HEIGHT
     create_apple board, true
@@ -186,15 +208,36 @@ def game_play
     new_board = snake.get board
     print_board new_board, true
     while command.upcase != "Q"
-        command = $stdin.getch
-        case command
-        when ""
-        when ""
-        when ""
-        when ""
+        command = read_char
+        case command.upcase
+        when "\e[A"
+            snake.change_dir_to=DIR[:up]
+        when "\e[B"
+            snake.change_dir_to=DIR[:down]
+        when "\e[D"
+            snake.change_dir_to=DIR[:left]
+        when "\e[C"
+            snake.change_dir_to=DIR[:right]
+        when "Q"
+            puts "Are you sure you want to quit?"
+            puts "Press " + "Enter to Quit".colorize(:red) + " any other key to resume".colorize(:green) + "..."
+            confirm = read_char
+            if (confirm == "\r")
+                puts "Hope you play again."
+                go_up 3
+            else
+                command = ""
+                go_up 2
+            end            
+        when "P"
+            puts "Press any key to resume...".colorize(:green)            
+            read_char
+            go_up 1
         else
+            case command
+            when ""
+            end
         end
-        snake.change_dir_to="right"
         print_board snake.get board
     end    
     # print_board board 
