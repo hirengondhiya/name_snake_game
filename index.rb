@@ -1,13 +1,10 @@
 require 'colorize'
 
 require 'io/console'
-
+$tail_value = 0
 $input_hash = {}
 HEIGHT = 10
 WIDTH = HEIGHT * 2
-$apple = {}
-APPLE_CHAR = "a".green.blink
-SNAKE_HEAD_CHAR = "@"
 DIR = {
     up: {
         x: 0,
@@ -29,25 +26,183 @@ DIR = {
 
 class Snake
     attr_reader :head, :tail
+
     def initialize
+        @size = {
+            width: WIDTH,
+            height: HEIGHT
+        }
         @head = {
-            x: WIDTH / 4 + 1,
-            y: HEIGHT / 2 + 1
+            x: @size[:width] / 4,
+            y: @size[:height] / 2
         }
         @tail = []
-
         @dir = DIR[:right]
+        @apple = { 
+            x: @size[:width]/2,
+            y: @size[:height]/2
+        }
+        draw(true)
     end
 
-    def get board
-        dup_board = board.dup
-        
-        dup_board[@head[:y]][@head[:x]] = SNAKE_HEAD_CHAR
-        return dup_board
+    def new_apple
+        return {
+            x: rand(WIDTH)+1,
+            y: rand(HEIGHT)+1
+        }
+    end
+
+    def create_apple
+        n = new_apple
+        while(n == @apple || @head == n || @tail.include?(n))
+            n = new_apple
+        end
+        @apple=n
+    end
+
+    def go_up lines
+        for y in 0...lines
+            print "\r" + ("\e[A\e[K")
+        end
+    end
+
+    def draw(first_draw=false)
+        # puts "in draw"
+        xchar = "*"
+        ychar = "*"
+        nchar = " "
+        hchar = "@"
+        tchar = "$"
+        achar = "a".red
+
+        if(!first_draw)
+            go_up @size[:height]+2
+        end
+
+        for y in 0..@size[:height]+1
+            for x in 0..@size[:width]+1
+                p = {x:x, y:y}
+                if (top_wall?(p) || bottom_wall?(p))
+                    # puts "y==0: #{y==0} || y == height+1: #{y == height+1} || x == 0: #{x == 0} || x == width+1: #{x == width+1}"
+                    # puts "|"
+                    print ychar
+                elsif (left_wall?(p) || right_wall?(p))
+                    print xchar
+                elsif (@apple == p)
+                    print achar
+                elsif (x==@head[:x] && y==@head[:y])
+                    print hchar
+                elsif @tail.include?(p)
+                    # tail_node = (@tail.select {|t| t[:x]==x && t[:y]==y})
+                    # tc = tail_node.length > 0 ? tail_node[0][:value] : tchar
+                    # # tc = 
+                    print tchar
+                else
+                    # puts "space"
+                    print nchar
+                end                    
+            end
+            print "\n"
+        end
+    end    
+
+    def detect_tail_direction
+        prev_node = @head.dup
+        for current_node in tail
+            current_node[:dir] = {
+                x: prev_node[:x]-current_node[:x],
+                y: prev_node[:y]-current_node[:y]
+            }
+            prev_node = {
+                x: current_node[:x],
+                y: current_node[:y]
+            }
+        end
+        garbage=0
     end
 
     def change_dir_to=dir
         @dir=dir
+        # detect_tail_direction
+    end
+
+    def move=step
+        if(@tail.length > 0)
+            @tail.pop
+            @tail.unshift(@head.dup)
+        end
+        @head[:x] += @dir[:x]
+        @head[:y] += @dir[:y]
+        eatapple?
+        draw
+    end
+
+    def eatapple?
+        if (@head == @apple)
+            if @tail.length > 0
+                tail_end = @tail[@tail.length-1]
+                tail_dir = @tail.length == 1? {
+                    x: @head[:x] - tail_end[:x],
+                    y: @head[:y] - tail_end[:y]
+                } : {
+                    x: @tail[@tail.length-2][:x] - tail_end[:x],
+                    y: @tail[@tail.length-2][:y] - tail_end[:y]
+                }
+            else
+                tail_end = @head
+                tail_dir = @dir
+            end
+            # tail_end = @tail.length > 0? @tail[@tail.length-1] : @head
+            # tail_end = @head.dup
+            t = {}
+            case tail_dir
+            when DIR[:up]
+                t = {
+                    x: tail_end[:x],
+                    y: tail_end[:y] + DIR[:down][:y]
+                }
+            when DIR[:down]
+                t = {
+                    x: tail_end[:x],
+                    y: tail_end[:y] + DIR[:up][:y]
+                }
+            when DIR[:left]
+                t = {
+                    x: tail_end[:x] + DIR[:right][:x],
+                    y: tail_end[:y]
+                }
+            when DIR[:right]
+                t = {
+                    x: tail_end[:x] + DIR[:left][:x],
+                    y: tail_end[:y]
+                }
+            end
+            # $tail_value += 1
+            # t[:value] = $tail_value
+            @tail.push(t)
+            create_apple
+        else
+            return false
+        end
+    end
+
+    def left_wall?(n)
+        return (n.is_a?(Integer) && n==0) || (n.is_a?(Hash) && n[:x]==0)
+    end
+    def right_wall?(n)
+        return (n.is_a?(Integer) && n==@size[:width]+1) || (n.is_a?(Hash) && n[:x]==@size[:width]+1)
+        # return (x == @size[:width]+1)
+    end
+    def top_wall?(n)
+        # return (y == 0)
+        return (n.is_a?(Integer) && n==0) || (n.is_a?(Hash) && n[:y]==0)
+    end
+    def bottom_wall?(n)
+        # return y == @size[:height]+1
+        return (n.is_a?(Integer) && n==@size[:height]+1) || (n.is_a?(Hash) && n[:y]==@size[:height]+1)
+    end
+    def gameover?
+        return @tail.include?(@head) || left_wall?(@head) || right_wall?(@head) || top_wall?(@head) || bottom_wall?(@head)
     end
 end
 
@@ -113,74 +268,6 @@ def print_help
     end
 end
 
-def empty_board width, height
-    board = []
-    # xchar = "|"
-    # ychar = "-"
-    xchar = "*"
-    ychar = "*"
-    nchar = " "
-    for y in 0..(height+1)
-        row = []
-        for x in 0..(width+1)
-            # puts "x: #{x} y: #{y} width: #{width+1} height: #{height+1}"
-            # print "Pushing "
-            if (y==0 || y == height+1 )
-                # puts "y==0: #{y==0} || y == height+1: #{y == height+1} || x == 0: #{x == 0} || x == width+1: #{x == width+1}"
-                # puts "|"
-                row.push(ychar)
-            elsif (x == 0 || x == width+1)
-                row.push(xchar)
-            else
-                # puts "space"
-                row.push(nchar)
-            end
-            # gets.chomp
-        end
-        board.push(row)
-    end
-    return board
-end
-
-def print_board board, new=false
-    if(!new)
-        go_up board.length+1
-    end
-    for y in 0...board.length
-        row = board[y]
-        for x in 0..row.length
-            print board[y][x]
-        end
-        puts ""
-    end
-end
-
-def go_up lines
-    for y in 0...lines
-        print "\r" + ("\e[A\e[K")
-    end
-end
-
-def create_apple board, first=false
-    if (first == true)
-        x = WIDTH/2 + 1
-        y = HEIGHT/2 + 1
-    else
-        x = $apple[:x]
-        y = $apple[:y]
-        while(x == $apple[:x])
-            x = rand(WIDTH) + 1
-        end
-        while(y == $apple[:y])
-            y = rand(HEIGHT) + 1
-        end    
-    end
-
-    $apple[:x] = x
-    $apple[:y] = y
-    board[y][x] = APPLE_CHAR
-end
-
 def read_char
     STDIN.echo = false
     STDIN.raw!
@@ -193,52 +280,50 @@ def read_char
   ensure
     STDIN.echo = true
     STDIN.cooked!
-  
     return input
-  end
+end
 
-
-
-  def game_play
+def game_play
     is_error = read_comm_args
-    board = empty_board WIDTH, HEIGHT
-    create_apple board, true
+    # board = empty_board WIDTH, HEIGHT
+    # create_apple board, true
     snake = Snake.new
     command = ""
-    new_board = snake.get board
-    print_board new_board, true
-    while command.upcase != "Q"
+    # new_board = snake.get board
+    # print_board new_board, true
+    while command.upcase != "Q" && !snake.gameover?
+        prev_command = command.dup
         command = read_char
-        case command.upcase
-        when "\e[A"
-            snake.change_dir_to=DIR[:up]
-        when "\e[B"
-            snake.change_dir_to=DIR[:down]
-        when "\e[D"
-            snake.change_dir_to=DIR[:left]
-        when "\e[C"
-            snake.change_dir_to=DIR[:right]
-        when "Q"
-            puts "Are you sure you want to quit?"
-            puts "Press " + "Enter to Quit".colorize(:red) + " any other key to resume".colorize(:green) + "..."
-            confirm = read_char
-            if (confirm == "\r")
-                puts "Hope you play again."
-                go_up 3
+        if prev_command != command
+            case command.upcase
+            when "\e[A"
+                snake.change_dir_to=DIR[:up]
+            when "\e[B"
+                snake.change_dir_to=DIR[:down]
+            when "\e[D"
+                snake.change_dir_to=DIR[:left]
+            when "\e[C"
+                snake.change_dir_to=DIR[:right]
+            when "Q"
+                puts "Are you sure you want to quit?"
+                puts "Press " + "Enter to Quit".colorize(:red) + " any other key to resume".colorize(:green) + "..."
+                confirm = read_char
+                if (confirm == "\r")
+                    puts "Hope you play again."
+                    snake.go_up 3
+                else
+                    command = ""
+                    go_up 2
+                end            
+            when "P"
+                puts "Press any key to resume...".colorize(:green)            
+                read_char
+                go_up 1
             else
-                command = ""
-                go_up 2
-            end            
-        when "P"
-            puts "Press any key to resume...".colorize(:green)            
-            read_char
-            go_up 1
-        else
-            case command
-            when ""
+                system('feep -d 25')
             end
         end
-        print_board snake.get board
+        snake.move=1
     end    
     # print_board board 
 
