@@ -123,18 +123,22 @@ class Snake
 
     def change_dir_to=dir
         @dir=dir
-        # detect_tail_direction
     end
 
-    def move=step
-        if(@tail.length > 0)
-            @tail.pop
-            @tail.unshift(@head.dup)
-        end
+    def move
+        curr_head_loc = @head.dup
         @head[:x] += @dir[:x]
         @head[:y] += @dir[:y]
-        eatapple?
-        draw
+        is_gameover = gameover?
+        if (!is_gameover)
+            if(@tail.length > 0)
+                @tail.pop
+                @tail.unshift(curr_head_loc)
+            end
+            eatapple?
+            draw
+        end
+        return is_gameover
     end
 
     def eatapple?
@@ -177,8 +181,6 @@ class Snake
                     y: tail_end[:y]
                 }
             end
-            # $tail_value += 1
-            # t[:value] = $tail_value
             @tail.push(t)
             create_apple
         else
@@ -202,7 +204,11 @@ class Snake
         return (n.is_a?(Integer) && n==@size[:height]+1) || (n.is_a?(Hash) && n[:y]==@size[:height]+1)
     end
     def gameover?
-        return @tail.include?(@head) || left_wall?(@head) || right_wall?(@head) || top_wall?(@head) || bottom_wall?(@head)
+        is_game_over = @tail.include?(@head) || left_wall?(@head) || right_wall?(@head) || top_wall?(@head) || bottom_wall?(@head)
+        if (is_game_over)
+            puts "Gave over. Better luck next time!"
+        end
+        return is_game_over
     end
 end
 
@@ -285,13 +291,9 @@ end
 
 def game_play
     is_error = read_comm_args
-    # board = empty_board WIDTH, HEIGHT
-    # create_apple board, true
     snake = Snake.new
     command = ""
-    # new_board = snake.get board
-    # print_board new_board, true
-    while command.upcase != "Q" && !snake.gameover?
+    while command.upcase != "Q" && !snake.move
         prev_command = command.dup
         command = read_char
         if prev_command != command
@@ -309,31 +311,20 @@ def game_play
                 puts "Press " + "Enter to Quit".colorize(:red) + " any other key to resume".colorize(:green) + "..."
                 confirm = read_char
                 if (confirm == "\r")
-                    puts "Hope you play again."
-                    snake.go_up 3
+                    puts "Good bye!"
                 else
                     command = ""
-                    go_up 2
+                    snake.go_up 2
                 end            
             when "P"
                 puts "Press any key to resume...".colorize(:green)            
                 read_char
-                go_up 1
+                snake.go_up 1
             else
                 system('feep -d 25')
             end
         end
-        snake.move=1
-    end    
-    # print_board board 
-
-    # if (!is_error)
-    #     user_name = read_user_name
-    #     print_help
-        
-    #     system("clear")
-    #     # puts "height=#{board.length} width=#{board[0].length}"
-    # end
+    end
 end
 
 game_play
