@@ -78,12 +78,12 @@ The application will recognize two command-line parameters.
 
 The snake can be controlled by using arrow keys on the keyboard.
 Press
-    1. Up Arrow: to move the snake in top direction.
-    2. Down Arrow: to move the snake in the down direction.
-    3. Left Arrow: to move snake in left direction.
-    4. Right Arrow: to move the snake in the right direction.
-    5. "q" or "Q": to quit the game.
-    6. "p" or "P": to pause the game.
+1. Up Arrow: to move the snake in top direction.
+2. Down Arrow: to move the snake in the down direction.
+3. Left Arrow: to move snake in left direction.
+4. Right Arrow: to move the snake in the right direction.
+5. "q" or "Q": to quit the game.
+6. "p" or "P": to pause the game.
     
 During the gameplay, if you press any other key except mentioned above the snake will move by one step in the same direction as the previous one and the app will indicate invalid keypress by sounding a beep sound.
 
