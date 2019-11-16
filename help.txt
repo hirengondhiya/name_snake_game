@@ -1,0 +1,16 @@
+The snake game is a game inspired from snake game found on classic Nokia phones.
+
+The goal is to feed the apples produced by the game to the snake wihout hitting boundries of the wall and wihout running over it self. Each time the snake is fed with an apple it grows a bit.
+
+The snake can be controlled by using arrow keys on the keyboard.
+Press
+    1. Up Arrow: to move snake in top direction.
+    2. Down Arrow: to move snake in down direction.
+    3. Left Arrow: to move snake in left direction.
+    4. Right Arrow: to move snake in right direction.
+    5. "q" or "Q": to quit the game.
+    6. "p" or "P": to pause the game.
+    
+During the game play if you press any other key except mentioned above the snake will move by one step in the same direction as previous move and the app will indicate invalid key press by sounding a beep sound.
+
+The continues until user does not hit any of the four walls or runs its head over its tail.

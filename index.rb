@@ -270,7 +270,11 @@ def print_help
     end
 
     if need_help != nil then 
-        puts "need help."
+        puts File.read("help.txt").green
+
+        puts "Press " + "any key".green + " to start playing the game."
+        read_char
+        system("clear")
     end
 end
 
@@ -327,4 +331,6 @@ def game_play
     end
 end
 
+read_user_name
+print_help
 game_play
