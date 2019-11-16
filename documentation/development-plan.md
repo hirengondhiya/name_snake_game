@@ -61,9 +61,34 @@ Your outline must include:
 - how the user will interact with / use each feature
 - how errors will be handled by the application and displayed to the user
  -->
- ## Gameplay
 
- ## Error handling
+The application will implement a feature to give an option to the user if she wants to see the help file to detail all the features implemented in the game, the command line arguments that the application accepts, how to play the game and common user errors that the game handles.
+
+The goal of the game is to feed the apples produced by the game to the snake without hitting boundaries of the wall and without running over itself. Each time the snake is fed with an apple it grows by one unit.
+
+The application recognizes two command-line parameters.
+1. -username: 
+    This optional parameter can be used to pass username to the game.
+    Usage ruby index.rb -username="name of the user"
+    Please note 
+        Equal sign (=) after the parameter name must be used to assign the username value to the parameter
+        If the name is more than one word it should be enclosed in quotes (")
+2. -help: 
+    This optional parameter can be used to show the help file it does not need to be passed any value to the parameter. If any value is passed to -help it would be ignored.
+
+The snake can be controlled by using arrow keys on the keyboard.
+Press
+    1. Up Arrow: to move the snake in top direction.
+    2. Down Arrow: to move the snake in the down direction.
+    3. Left Arrow: to move snake in left direction.
+    4. Right Arrow: to move the snake in the right direction.
+    5. "q" or "Q": to quit the game.
+    6. "p" or "P": to pause the game.
+    
+During the gameplay, if you press any other key except mentioned above the snake will move by one step in the same direction as the previous one and the app will indicate invalid keypress by sounding a beep sound.
+
+The game continues until the user does not hit any of the four walls or runs its head over its tail.
+
 
 # Control Flow Diagram	
 ![Snake game control flow](./ctrl-flow-diagram/snake_game.svg)
