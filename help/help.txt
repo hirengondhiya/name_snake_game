@@ -23,4 +23,4 @@ Press
     
 During the game play if you press any other key except mentioned above the snake will move by one step in the same direction as previous move and the app will indicate invalid key press by sounding a beep sound.
 
-The continues until user does not hit any of the four walls or runs its head over its tail.
+The game continues until user does not hit any of the four walls or runs its head over its tail.
