@@ -218,6 +218,7 @@ end
 
 def read_comm_args
     user_input = ARGV.dup
+    ARGV.clear
     # print ARGV
     # print user_input
     input_error = false
@@ -265,12 +266,12 @@ def print_help
     if (need_help == nil)
         puts "Do you know how to play the game? "
         puts "Press enter if you know any other key to know how to play snake."
-        play = gets.chomp
+        play = read_char
         need_help = play == ""? nil : play
     end
 
     if need_help != nil then 
-        puts File.read("help.txt").green
+        puts File.read("help/help.txt").green
 
         puts "Press " + "any key".green + " to start playing the game."
         read_char
@@ -331,6 +332,7 @@ def game_play
     end
 end
 
+read_comm_args
 read_user_name
 print_help
 game_play
