@@ -66,7 +66,7 @@ The application will implement a feature to give an option to the user if she wa
 
 The goal of the game is to feed the apples produced by the game to the snake without hitting boundaries of the wall and without running over itself. Each time the snake is fed with an apple it grows by one unit.
 
-The application recognizes two command-line parameters.
+The application will recognize two command-line parameters.
 1. -username: 
     This optional parameter can be used to pass username to the game.
     Usage ruby index.rb -username="name of the user"
@@ -87,7 +87,7 @@ Press
     
 During the gameplay, if you press any other key except mentioned above the snake will move by one step in the same direction as the previous one and the app will indicate invalid keypress by sounding a beep sound.
 
-The game continues until the user does not hit any of the four walls or runs its head over its tail.
+The game will continue until the user does not hit any of the four walls or runs its head over its tail.
 
 
 # Control Flow Diagram	
