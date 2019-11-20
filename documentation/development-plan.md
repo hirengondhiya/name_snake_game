@@ -61,33 +61,25 @@ Your outline must include:
 - how the user will interact with / use each feature
 - how errors will be handled by the application and displayed to the user
  -->
+The user will run index.rb from snake.sh file.
+The app will prompt user to to provide the user name if that is not provided in command line arguments.
+Unless the user has passed -help flag the app will prompt the user if s/he wants to view the help documentation. 
+If user has selected to view the help documentation the app will show the contents of help.txt from the help directory.
+Once the app has handled all above events the snake board will be displayed with a red "a" to represent apple and an "@" sign representing snake head.
 
-The application will implement a feature to give an option to the user if she wants to see the help file to detail all the features implemented in the game, the command line arguments that the application accepts, how to play the game and common user errors that the game handles.
+At this point the app will wait for user input
+If the user presses
+1. Up arrow key, the snake will move in up direction.
+2. Down arrow key, the snake will move in down direction.
+3. Left arrow key, the snake will move in left direction.
+4. Right arrow key, the snake will move in right direction.
+5. "P" or "p" key, the game will pause and display a message to press any key to resume the game.
+6. "q" or "Q" key, the app will pause, display a message to confirm if the user if s/he wants to quit the game. If user selects to quit by pressing enter/return key the app will stop.
+7. Any other key the app will sound a beep to indicate invalid input and move the snake in the direction previously chosen by the user.
 
-The goal of the game is to feed the apples produced by the game to the snake without hitting boundaries of the wall and without running over itself. Each time the snake is fed with an apple it grows by one unit.
+The app will keep taking input and perform actions outlined above until the snake steps over its own tail or it hits one of the boundary walls and then the game will end after displaying a message "Gave over. Better luck next time!"
 
-The application will recognize two command-line parameters.
-1. -username: 
-    This optional parameter can be used to pass username to the game.
-    Usage ruby index.rb -username="name of the user"
-    Please note 
-        Equal sign (=) after the parameter name must be used to assign the username value to the parameter
-        If the name is more than one word it should be enclosed in quotes (")
-2. -help: 
-    This optional parameter can be used to show the help file it does not need to be passed any value to the parameter. If any value is passed to -help it would be ignored.
 
-The snake can be controlled by using arrow keys on the keyboard.
-Press
-1. Up Arrow: to move the snake in top direction.
-2. Down Arrow: to move the snake in the down direction.
-3. Left Arrow: to move snake in left direction.
-4. Right Arrow: to move the snake in the right direction.
-5. "q" or "Q": to quit the game.
-6. "p" or "P": to pause the game.
-    
-During the gameplay, if you press any other key except mentioned above the snake will move by one step in the same direction as the previous one and the app will indicate invalid keypress by sounding a beep sound.
-
-The game will continue until the user does not hit any of the four walls or runs its head over its tail.
 
 
 # Control Flow Diagram	
