@@ -206,7 +206,7 @@ class Snake
     def gameover?
         is_game_over = @tail.include?(@head) || left_wall?(@head) || right_wall?(@head) || top_wall?(@head) || bottom_wall?(@head)
         if (is_game_over)
-            puts "Gave over. Better luck next time!"
+            puts "Game over."
         end
         return is_game_over
     end
