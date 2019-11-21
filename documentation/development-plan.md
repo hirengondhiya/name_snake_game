@@ -116,6 +116,8 @@ Develop an implementation plan which:
 ![sixth state](./images/Screen_Shot_2019-11-21_at_9.42.24_am.png)
 7. 
 ![seventh state](./images/Screen_Shot_2019-11-21_at_11.42.35_am.png)
+8. Final Sate
+![final state](./images/Screen_Shot_2019-11-21_at_1.52.01_pm.png )
 
 # Status Updates
 All the status updates can be found [here](development-log.md)
