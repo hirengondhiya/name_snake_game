@@ -30,7 +30,7 @@ chmod u+x snake.sh
 ```
 Alternatively run
 ```
-ruby snake.rb -username="Your Name" -help
+ruby index.rb -username="Your Name" -help
 ```
 # Dependencies
 This app has dependency on following Ruby gems
