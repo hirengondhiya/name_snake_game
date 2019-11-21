@@ -49,9 +49,9 @@ The game should provide options to chose the difficulty level of the game. Based
 The game should reward the user with a certain number of points every time an apple is eaten by the snake and it should keep track of apples eaten by the user as well as update the score. 
 ## Should allow the user to play again without ending the application. 
 When the game ends due to the snake hitting the wall or cutting itself. The application should provide an option to restart a new game without the user needing to start the application again. 
-## Should allow the user to quit during the gameplay. 
-During the gameplay, it should allow the user to quit the game if the user presses the key "Q" or "q" 
-## Should produce with letters from user name and let users win when they build a snake with their name. 
+## Should allow the user to quit or pause during the gameplay. 
+During the gameplay, it should allow the user to quit the game if the user presses the key "Q" or "q" or pause the game if user presses "P" or "p" key.
+## Should produce apple with letters from user name and let users win when they build a snake with their name. 
 The game should produce letters from the name of the user as an apple which can be eaten by the snake. On each eating of the apple, the letter should be added to the tail of the snake. The user wins when the whole name is produced without cutting itself or without hitting the wall. 
 # User Interaction and Experience
 <!-- 
