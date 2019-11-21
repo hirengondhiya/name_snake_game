@@ -22,8 +22,8 @@ This app have dependencies on Ruby gems "Colorize" and "Feep". Use below command
 ```
 bundle install
 ```
-
-6. In the terminal run bash script to run the file.
+# Run
+In the terminal run bash script to run the file.
 ```
 chmod u+x snake.sh
 ./snake.sh
