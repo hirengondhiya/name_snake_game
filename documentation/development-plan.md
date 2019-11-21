@@ -121,3 +121,6 @@ Develop an implementation plan which:
 
 # Status Updates
 All the status updates can be found [here](development-log.md)
+
+# Tests
+Manual test results are logged in a separate [manual-test](./manual-test.md) file.
