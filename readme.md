@@ -38,7 +38,8 @@ The application recognizes two command-line parameters.
 -username: This optional parameter can be used to pass username to the game. Usage ruby index.rb -username="name of the user" Please note Equal sign (=) after the parameter name must be used to assign the username value to the parameter If the name is more than one word it should be enclosed in quotes (")
 
 -help: This optional parameter can be used to show the help file it does not need to be passed any value to the parameter. If any value is passed to -help it would be ignored.
-The snake can be controlled by using arrow keys on the keyboard. Press
+The snake can be controlled by using arrow keys on the keyboard. 
+
 2. Moving the Snake
 
 Press
@@ -50,11 +51,14 @@ Down Arrow: to move the snake in the down direction.
 Left Arrow: to move snake in left direction.
 
 Right Arrow: to move the snake in the right direction.
+
 3. Quiting the game
 Anytime during the game play the user can Quit the game by pressing "q" or "Q".
+
 4. Pausing the game
 Anytime during the game play the user can Pause the game by pressing "p" or "P"
-4. Input Error
+
+5. Input Error
 During the gameplay, if you press any other key except mentioned above the snake will move by one step in the same direction as the previous one and the app will indicate invalid keypress by sounding a beep sound.
 
 The game will continue until the user does not hit any of the four walls or runs its head over its tail.
