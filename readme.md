@@ -2,6 +2,10 @@
 Snake application is inspired by the Snake game that came with old Nokia phones. 
 The goal of the game is to feed the apples produced by the game to the snake without hitting boundaries of the wall and without running over itself. Each time the snake is fed with an apple it grows by one unit.
 This game is implemented as a terminal app using Ruby programming language.
+# System Requirements
+The app is built using Ruby programming language hence your system must be able to run Ruby interpreter.
+
+This app was tested on macOS Mojave version 10.14.6 and ruby-2.6.3
 # Installation
 1. Follow the instructions at [https://www.ruby-lang.org/en/documentation/installation/](https://www.ruby-lang.org/en/documentation/installation/) to download and install Ruby on you computer.
 
