@@ -99,6 +99,23 @@ Develop an implementation plan which:
 - prioritise the implementation of different features, or checklist items within a feature
 - provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
  -->
+ I have used Trello to manage implementation of the app. The board can be accessed from [here](https://trello.com/b/K7fXmhTH/snake-application).
+
+ Below screen prints represents state of the board at various points of implemenation
+1. Initial State
+![Initial State](./images/Screen_Shot_2019-11-15_at_9.41.25_am.png)
+2. 
+![second state](./images/Screen_Shot_2019-11-15_at_9.42.23_am.png)
+3. 
+![third state](./images/Screen_Shot_2019-11-15_at_9.42.49_am.png)
+4. 
+![fourth state](./images/Screen_Shot_2019-11-16_at_10.03.00_am.png)
+5. 
+![fifth state](./images/Screen_Shot_2019-11-16_at_11.37.29_am.png)
+6. 
+![sixth state](./images/Screen_Shot_2019-11-21_at_9.42.24_am.png)
+7. 
+![seventh state](./images/Screen_Shot_2019-11-21_at_11.42.35_am.png)
 
 # Status Updates
 All the status updates can be found [here](development-log.md)
