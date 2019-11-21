@@ -4,19 +4,25 @@ The goal of the game is to feed the apples produced by the game to the snake wit
 This game is implemented as a terminal app using Ruby programming language.
 # Installation
 1. Follow the instructions at [https://www.ruby-lang.org/en/documentation/installation/](https://www.ruby-lang.org/en/documentation/installation/) to download and install Ruby on you computer.
+
 2. Clone or Download the repository from [GitHub](https://github.com/hirengondhiya/name_snake_game)
+
 3. On terminal cd into root directory of the cloned/downloaded repository
+
 4. Install the bundler gem 
+
 This step is optional if you already have installed Bundler gem.
 If not on terminal using below command install Bundler gem.
 ```
 Gem install bundler
 ```
 5. Install depencies
+
 This app have dependencies on Ruby gems "Colorize" and "Feep". Use below command to install all the dependencies.
 ```
 bundle install
 ```
+
 6. In the terminal run bash script to run the file.
 ```
 chmod u+x snake.sh
