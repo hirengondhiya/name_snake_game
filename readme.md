@@ -53,9 +53,11 @@ Left Arrow: to move snake in left direction.
 Right Arrow: to move the snake in the right direction.
 
 3. Quiting the game
+
 Anytime during the game play the user can Quit the game by pressing "q" or "Q".
 
 4. Pausing the game
+
 Anytime during the game play the user can Pause the game by pressing "p" or "P"
 
 5. Input Error
