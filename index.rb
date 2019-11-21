@@ -338,5 +338,5 @@ begin
     print_help
     game_play
 rescue
-    puts "An error has occurred. Please try make sure the app is installed correctly"
+    puts "An error has occurred. Please make sure the app is installed correctly."
 end
